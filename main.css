@@ -1,0 +1,97 @@
+/*
+body:after{
+    position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+    content: url("images/snow.jpg") url("images/spring.jpg") url("images/summer.jpg") url("images/fall.png");
+}
+
+@keyframes seasons {
+    0% {background-image: url("images/snow.jpg"); }
+    25% {background-image: url("images/spring.jpg");}
+    50% {background-image: url("images/summer.jpg");}
+    100% {background-image: url("images/fall.png");}
+}
+
+body{
+	-webkit-backface-visibility: hidden;
+	background-size: 100% 100%;
+	animation-name: seasons;
+	animation-duration: 12s;
+	animation-iteration-count: infinite;
+}
+
+canvas {
+	display: block;
+}
+
+*/
+
+
+/*----plugin css----*/
+/*
+body {
+    overflow-x: hidden
+}
+*/
+.scroll {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+
+/*------*/
+
+#totoro_background1 {
+    background-image: url("images/snow.jpg");
+}
+
+.mover {
+    top: 0;
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: fliph;
+    /*IE*/
+    filter: fliph;
+}
+
+.flip-vertical {
+    -moz-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    transform: scaleY(-1);
+    -ms-filter: flipv;
+    /*IE*/
+    filter: flipv;
+}
+
+#totoro {
+    top: 0;
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: fliph;
+    /*IE*/
+    filter: fliph;
+    position: fixed;
+}
+
+html {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+html {
+    background-image:url("images/summer.jpg");
+}
+
+html.scrolled {
+    background-image:url("images/spring.jpg");
+}
