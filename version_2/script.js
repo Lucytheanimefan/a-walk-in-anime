@@ -8,16 +8,26 @@ $("#totoro").scroll(function() {
 var RIGHT = 39;
 var LEFT = 37;
 
+var sceneChangeCount = 0;
+
+var backgroundImages = ["../images/fall.png","../images/snow.jpg","../images/spring.jpg","../images/summer.jpg"];
 
 $(document).keydown(function(e) {
     if (e.keyCode == RIGHT) {
-    	flipTotoro(-1);
+        flipTotoro(-1);
         moveHorizontal("#totoro", 20);
     } else if (e.keyCode == LEFT) {
-    	flipTotoro();
+        flipTotoro();
         moveHorizontal("#totoro", -20);
     }
-    console.log(e.keyCode);
+    if (!$('#totoro').visible()) {
+        $("#totoro").css({ left: 0 });
+        if (sceneChangeCount>4){
+        	sceneChangeCount=0;
+        }
+        changeScene(backgroundImages[sceneChangeCount%4]);
+        sceneChangeCount++;
+    }
 });
 
 function moveHorizontal(divElement, x_diff) {
@@ -27,14 +37,24 @@ function moveHorizontal(divElement, x_diff) {
     $(divElement).css({ left: new_x })
 }
 
-function flipTotoro(isLeft=1) {
-	var direction = isLeft.toString(); 
+function flipTotoro(isLeft = 1) {
+    var direction = isLeft.toString();
     $("#totoro").css({
-        "-moz-transform": "scaleX("+isLeft+")",
-        "-webkit-transform": "scaleX("+isLeft+")",
-        "-o-transform": "scaleX("+isLeft+")",
-        "transform": "scaleX("+isLeft+")"
+        "-moz-transform": "scaleX(" + isLeft + ")",
+        "-webkit-transform": "scaleX(" + isLeft + ")",
+        "-o-transform": "scaleX(" + isLeft + ")",
+        "transform": "scaleX(" + isLeft + ")"
     });
+}
 
+
+function changeScene(imagePath) {
+    $("body").css({
+        "background-image": "url(" + imagePath + ")",
+        "-webkit-background-size": "cover",
+        "-moz-background-size": "cover",
+        "-o-background-size": "cover",
+        "background-size": "cover"
+    });
 
 }
