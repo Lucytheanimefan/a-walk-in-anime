@@ -10,25 +10,42 @@ var LEFT = 37;
 
 var sceneChangeCount = 0;
 
-var backgroundImages = ["../images/fall.png","../images/snow.jpg","../images/spring.jpg","../images/summer.jpg"];
+var backgroundImages = ["../images/fall.png", "../images/snow.jpg", "../images/spring.jpg", "../images/summer.jpg"];
 
 $(document).keydown(function(e) {
     if (e.keyCode == RIGHT) {
         flipTotoro(-1);
         moveHorizontal("#totoro", 20);
+        if (!$('#totoro').visible()) {
+            $("#totoro").css({ left: 0 });
+            sceneChangeCount++;
+            changeScenes();
+        }
     } else if (e.keyCode == LEFT) {
         flipTotoro();
         moveHorizontal("#totoro", -20);
-    }
-    if (!$('#totoro').visible()) {
-        $("#totoro").css({ left: 0 });
-        if (sceneChangeCount>4){
-        	sceneChangeCount=0;
+        if (!$('#totoro').visible()) {
+            var x = $(window).width() - 500;
+            $("#totoro").css({ left: x });
+            if (sceneChangeCount == 0) {
+                sceneChangeCount=3;
+            } else {
+                sceneChangeCount--;
+            }
+            changeScenes();
         }
-        changeScene(backgroundImages[sceneChangeCount%4]);
-        sceneChangeCount++;
     }
 });
+
+
+function changeScenes() {
+    console.log("change scenes: " + sceneChangeCount);
+    if (sceneChangeCount > 3) {
+        sceneChangeCount = 0;
+    }
+    changeScene(backgroundImages[sceneChangeCount]);
+}
+
 
 function moveHorizontal(divElement, x_diff) {
     var pos = $(divElement).position();
