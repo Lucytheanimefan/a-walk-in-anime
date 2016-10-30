@@ -51,7 +51,24 @@ function moveHorizontal(divElement, x_diff) {
     var pos = $(divElement).position();
     var new_x = pos.left + x_diff;
     console.log("new x: " + new_x)
-    $(divElement).css({ left: new_x })
+    $(divElement).css({ left: new_x });
+    var perc = getXPercentage(pos);
+    console.log("percent: "+perc);
+    if (sceneChangeCount==0){
+    	firstPage(perc);
+    }else if (sceneChangeCount==1){
+    	secondPage(perc);
+    }else if (sceneChangeCount==2){
+    	//spring
+    }else if (sceneChangeCount==3){
+    	//summer
+    }
+
+}
+
+function getXPercentage(pos){
+	var percent = pos.left/($(window).width() - 500);
+	return percent;
 }
 
 function flipTotoro(isLeft = 1) {
@@ -76,3 +93,26 @@ function changeScene(imagePath) {
     });
 
 }
+
+function firstPage(perc){ //fall
+	if (perc<0.02){
+		$('#text').append("<h1 class='tlt'>Welcome to Totoro's Adventure</h1>");
+		$('.tlt').textillate();
+	}
+}
+
+function secondPage(perc){ //winter
+	$("#text").empty();
+}
+
+
+
+
+
+
+
+
+
+
+
+

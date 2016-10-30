@@ -13,3 +13,9 @@
 body{
 	overflow-x: scroll;
 }
+
+h1.tlt{
+    font-family: 'Oswald', sans-serif;
+    padding-left: 5%;
+    padding-top: 5%;
+}
