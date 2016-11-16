@@ -12,6 +12,8 @@ var sceneChangeCount = 0;
 
 var backgroundImages = ["../images/fall.png", "../images/snow.jpg", "../images/spring.jpg", "../images/summer.jpg"];
 
+$('#scoreButton').click();
+
 $(document).keydown(function(e) {
     if (e.keyCode == RIGHT) {
         flipTotoro(-1);
@@ -56,10 +58,12 @@ function moveHorizontal(divElement, x_diff) {
     console.log("percent: "+perc);
     if (sceneChangeCount==0){
     	firstPage(perc);
+        snowStorm.freeze();
     }else if (sceneChangeCount==1){
     	secondPage(perc);
+        snow();
     }else if (sceneChangeCount==2){
-    	//spring
+    	spring();
     }else if (sceneChangeCount==3){
     	//summer
     }
@@ -105,8 +109,15 @@ function secondPage(perc){ //winter
 	$("#text").empty();
 }
 
+function snow(){
+    snowStorm.resume();
+    //snowStorm.followMouse = true;
 
+}
 
+function spring(){
+    snowStorm.freeze();
+}
 
 
 

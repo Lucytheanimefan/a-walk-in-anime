@@ -10,12 +10,22 @@
     position: fixed;
 }
 
-body{
-	overflow-x: scroll;
+body {
+    overflow-x: scroll;
 }
 
-h1.tlt{
+h1.tlt {
     font-family: 'Oswald', sans-serif;
     padding-left: 5%;
     padding-top: 5%;
+}
+
+#scoreArea {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#scoreButton{
+    width: 100%;
 }
